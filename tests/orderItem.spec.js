@@ -1,0 +1,22 @@
+import { test, expect } from '@playwright/test';
+
+test('Add to Cart', async ({ page }) => {
+  await page.goto('https://order.savourfoods.com.pk/');
+  await page.getByRole('combobox', { name: 'Select City / Region' }).click();
+  await page.getByRole('option', { name: 'Lahore' }).click();
+  await page.getByRole('combobox', { name: 'Select Area / Sub Region' }).click();
+  await page.getByText('Airport', { exact: true }).click();
+  await page.getByRole('button', { name: 'Select' }).click();
+  await page.locator('button').filter({ hasText: 'Chicken Pulao' }).click();
+  await page.getByRole('img', { name: 'Special', exact: true }).click();
+  await page.locator('input[name=":r3r:"]').check();
+  await page.getByRole('button', { name: 'Add To Cart' }).first().click();
+  await page.getByRole('button', { name: 'Add To Cart' }).first().click();
+  await page.getByText('Rs. 2,070.00 Add To Cart').click();
+  //await page.locator('[aria-label="Add To Cart"]').click();
+  await page.getByTestId('ShoppingBagIcon').locator('path').click();
+  await page.getByText('Checkout').click();
+  
+  await expect(page.getByRole('button', { name: 'Place Order' })).toBeVisible(); //This assertion is validating the place order button is visible or not
+  await page.waitForTimeout(5000);
+});
