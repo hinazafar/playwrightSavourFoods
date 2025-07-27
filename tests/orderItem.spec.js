@@ -21,7 +21,8 @@ test('Add to Cart', async ({ page }) => {
   await page.getByRole('button', { name: 'Add To Cart' }).first().click();
   await page.getByText('Rs. 2,070.00 Add To Cart').click();
   //await page.locator('[aria-label="Add To Cart"]').click();
-  await page.getByTestId('ShoppingBagIcon').locator('path').click();
+  //await page.getByTestId('ShoppingBagIcon').locator('path').click();
+  await page.getByTestId('ShoppingBagIcon').click();
   await page.getByText('Checkout').click();
   
   await page.waitForTimeout(3000); // extra wait if needed
