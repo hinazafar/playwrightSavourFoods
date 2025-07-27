@@ -9,7 +9,14 @@ test('Add to Cart', async ({ page }) => {
   await page.getByRole('button', { name: 'Select' }).click();
   await page.locator('button').filter({ hasText: 'Chicken Pulao' }).click();
   await page.getByRole('img', { name: 'Special', exact: true }).click();
-  await page.locator('input[name=":r3r:"]').check();
+  //await page.locator('input[name=":r3r:"]').check();
+  //await page.getByLabel('Boxed').check();
+  //await page.locator('label:has-text("Boxed") input[type="radio"]').check();
+  //await page.locator('//span[contains(text(), "Boxed")]/preceding-sibling::span//input[@type="radio"]').check();
+
+  //await page.locator('//label[.//span[contains(text(), "Boxed")]]').click();
+  await page.locator('xpath=/html/body/div[2]/div[3]/div[2]/div/div[2]/div/div/div[1]/div/div/div/div[2]/div/div/div/div/div/div[2]/div/span/input').check();
+
   await page.getByRole('button', { name: 'Add To Cart' }).first().click();
   await page.getByRole('button', { name: 'Add To Cart' }).first().click();
   await page.getByText('Rs. 2,070.00 Add To Cart').click();
