@@ -24,6 +24,7 @@ test('Add to Cart', async ({ page }) => {
   await page.getByTestId('ShoppingBagIcon').locator('path').click();
   await page.getByText('Checkout').click();
   
+  await page.waitForTimeout(3000); // extra wait if needed
   await expect(page.getByText('Place Order')).toBeVisible(); //This assertion is validating the place order text is visible or not
   await page.waitForTimeout(5000);
 });
